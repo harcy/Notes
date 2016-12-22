@@ -1,0 +1,316 @@
+2015/10/15
+
+#1Q:如何使用gcc命令同时编译多个.c文件和.h文件?
+#1A：gcc在编译多个文件的时候,将多个.c文件可以一起放在gcc命令的后面;对于头文件，尖括号包含的头文件gcc编译器会自动到
+默认的目录中查找相应的头文件，双引号包含的头文件，编译器会首先在当前目录或指定的目录下(如果有指定)去查找头文件，
+如果当前目录下没有该头文件则去默认的头文件目录下查找，例如：我们将自己写的.h文件放在head目录中进行编译，命令为
+gcc -Ihead a.c b.c -o server,该选项I代表include,该选项的作用阶段是预处理阶段.
+
+#2Q:如何对于多文件的编译写一个简单的makefile文件?
+#2A:给出下面一个例子来(第一行表示文件的依赖关系，第二行表示需要执行的命令，第二行必须要以TAB键开始)
+webserver : helper.o server.o
+        gcc helper.o server.o -o webserver
+
+
+helper.o : helper.c helper.h
+        gcc -c helper.c
+
+
+server.o helper.c server.c helper.h
+        gcc -c server.c
+
+
+clear :
+        rm helper.o server.o
+
+2015/10/21
+
+#1Q:结构体数组
+#1A:struct student
+{
+   int num;
+   char name[20];
+   char sex;
+   int age;
+   float score;
+} student 1,stu[30];
+代码定义了一个student结构体变量，同时定义了一个结构体数组stu[30]，数组里的每个元素
+都是一个结构体类型的变量
+
+#2Q:Linux C常用的I/O函数
+#2A:
+一、标准I/o函数:
+fopen 、fread 、fscanf(从FILE *fp读入数据)、sscanf(从char *buffer读入数据)、fgets、fflush、fclose
+fdopen、fwrite、fprintf(输出至FILE *fp)、sprintf(输出至char *buffer)、fputs、fseek
+二、Unix I/O函数
+open write stat read lseek close
+三、RIO函数–扩展函数
+rio_readn、rio_writen、rio_readinitb、rio_readlineb、rio_readnb
+
+#3Q:用于操作与缓存的关系
+#3A:
+用户操作                      Cache-control/Expires                     Last-Modified/Etag
+地址栏回车                         有效                                        有效
+页面链接跳转                       有效                                        有效
+新开窗口                           有效                                        有效
+前进后退                           有效                                        有效
+F5刷新                             无效                                        有效
+Ctrl+F5                            无效                                        无效
+Cache-control/Expires：当服务器发出响应的时候，通过两种方式告诉客户端缓存请求：分别为Cache-Control和Expires，
+Cache-Contorl:max-age=315360000,表示315360000秒内缓存都是有效的；
+
+Last-Modified / If-Modified-Since：Last-Modified是响应头，If-Modified-Since是请求头，Last-Modified会把Web组件的最后修改
+时间告诉客户端，客户端在下次请求Web组件的时候，会把上次服务器响应的最后修改时间作为If-Modified-Since的值发送给服务器端，
+服务器可以通过这个值来判断是否需要重新发送，如果不需要，就简单的返回一个304状态，客户端将在缓存那里直接读取所需的Web组件
+
+ETag / If-None-Match：ETag是响应头，If-None-Match是请求头，它们没有使用时间作为判断标准，而是使用一个特征串。ETag把Web
+组件的特征串发送给客户端，客户端在下次请求Web组件的时候，会把上次服务端响应的特征串作为If-None-Match的值发送给服务端，
+
+#3Q linux多线程函数
+#3A
+int pthread_create(  
+               pthread_t *tid,  
+               const pthread_attr_t *attr,  
+               void*(*start_routine)(void*),  
+               void *arg  
+               );  
+//参数tid 用于返回新创建线程的线程号；  
+//start_routine 是线程函数指针，线程从这个函数开始独立地运行；  
+//arg 是传递给线程函数的参数。由于start_routine 是一个指向参数类型为void*，返回值为void*的指针，
+//所以如果需要传递或返回多个参数时，可以使用强制类型转化。  
+  
+=============================================================  
+  
+void pthread_exit(  
+             void* value_ptr  
+             );  
+// 参数value_ptr 是一个指向返回状态值的指针。  
+  
+=============================================================  
+  
+int pthread_join(  
+             pthread_t tid ,  
+             void **status  
+             );  
+// 参数tid 是希望等待的线程的线程号，status 是指向线程返回值的指针，线程的返回值就是pthread_exit 中的value_ptr 参数，
+//或者是return语句中的返回值。该函数可用于线程间的同步。  
+=============================================================  
+  
+int pthread_mutex_init(  
+                   pthread_mutex_t *mutex,  
+                   const pthread_mutex_attr_t* attr  
+                   );  
+//该函数初始化一个互斥体变量，如果参数attr 为NULL，则互斥  
+//体变量mutex 使用默认的属性。  
+  
+=============================================================  
+  
+int pthread_mutex_lock(  
+                   pthread_mutex_t *mutex  
+                   );  
+// 该函数用来锁住互斥体变量。如果参数mutex 所指的互斥体已经  
+//被锁住了，那么发出调用的线程将被阻塞直到其他线程对mutex 解锁。  
+  
+=============================================================  
+  
+int pthread_mutex_trylock(  
+                      pthread_t *mutex  
+                      );  
+//该函数用来锁住mutex 所指定的互斥体，但不阻塞。如果该互斥  
+//体已经被上锁，该调用不会阻塞等待，而会返回一个错误代码。  
+  
+=============================================================  
+  
+int pthread_mutex_unlock(  
+                     pthread_mutex_t *mutex  
+                     );  
+//该函数用来对一个互斥体解锁。如果当前线程拥有参数mutex 所  
+//指定的互斥体，该调用将该互斥体解锁。  
+  
+=============================================================  
+  
+int pthread_mutex_destroy (  
+                       pthread_mutex_t *mutex  
+                       );  
+//该函数用来释放分配给参数mutex 的资源。调用成功时返回值为  
+//0， 否则返回一个非0 的错误代码。  
+  
+=============================================================  
+  
+int pthread_cond_init(  
+                  pthread_cond_t *cond,  
+                  const pthread_cond_attr_t*attr  
+                  );  
+//该函数按参数attr指定的属性创建一个条件变量。调用成功返回，  
+//并将条件变量ID 赋值给参数cond，否则返回错误代码。  
+  
+=============================================================  
+  
+int pthread_cond_wait (  
+                   pthread_cond_t *cond ,  
+                   pthread_mutex_t*mutex  
+                   );  
+// 该函数调用为参数mutex 指定的互斥体解锁，等待一个事件（由  
+//参数cond 指定的条件变量）发生。调用该函数的线程被阻塞直到有其他  
+//线程调用pthread_cond_signal 或pthread_cond_broadcast 函数置相应的条  
+//件变量，而且获得mutex 互斥体时才解除阻塞。  
+  
+=============================================================  
+  
+int pthread_cond_timewait(  
+                      pthread_cond_t *cond ,  
+                      pthread_mutex_t*mutex ,  
+                      const struct timespec *abstime  
+                      );  
+// 该函数与pthread_cond_wait 不同的是当系统时间到达abstime 参数指定的时间时，被阻塞线程也可以被唤起继续执行。  
+  
+=============================================================  
+  
+int pthread_cond_broadcast(  
+                       pthread_cond_t *cond  
+                       );  
+// 该函数用来对所有等待参数cond所指定的条件变量的线程解除阻塞，调用成功返回0，否则返回错误代码。  
+  
+=============================================================  
+  
+int pthread_cond_signal(  
+                    pthread_cond_t *cond  
+                    );  
+// 该函数的作用是解除一个等待参数cond所指定的条件变量的线程的阻塞状态。当有多个线程挂起等待该条件变量，也只唤醒一个线程。  
+  
+=============================================================  
+  
+int pthread_cond_destroy(  
+                     pthread_cond_t *cond  
+                     );  
+// 该函数的作用是释放一个条件变量。释放为条件变量cond 所分配的资源。调用成功返回值为0，否则返回错误代码。  
+  
+=============================================================  
+  
+int pthread_key_create(  
+                   pthread_key_t key ,  
+                   void(*destructor(void*))  
+                   );  
+// 该函数创建一个键值，该键值映射到一个专有数据结构体上。如果第二个参数不是NULL，
+//这个键值被删除时将调用这个函数指针来释放数据空间。  
+  
+=============================================================  
+  
+int pthread_key_delete(  
+                   pthread_key_t *key  
+                   );  
+// 该函数用于删除一个由pthread_key_create 函数调用创建的TSD键。调用成功返回值为0，否则返回错误代码。  
+  
+=============================================================  
+  
+int pthread_setspecific(  
+                    pthread_key_t key ,  
+                    const void(value)  
+                    );  
+// 该函数设置一个线程专有数据的值，赋给由pthread_key_create 创建的TSD 键，调用成功返回值为0，否则返回错误代码。  
+  
+=============================================================  
+  
+void *pthread_getspecific(  
+                    pthread_key_t *key  
+                    );  
+// 该函数获得绑定到指定TSD 键上的值。调用成功，返回给定参数key 所对应的数据。如果没有数据连接到该TSD 键，则返回NULL。  
+  
+=============================================================  
+  
+int pthread_once(  
+             pthread_once_t* once_control,  
+             void(*init_routine)(void)  
+             );  
+//该函数的作用是确保init_routine 指向的函数，在调用pthread_once的线程中只被运行一次。once_control 指向一个静态或全局的变量。
+
+2015/10/30
+#1Q:Linux ps命令下的STAT列的实际含义
+#1A:
+    D    不可中断     Uninterruptible sleep (usually IO)
+    R    正在运行，或在队列中的进程
+    S    处于休眠状态(被阻塞)
+    T    停止或被追踪
+    Z    僵尸进程
+    W    进入内存交换（从内核2.6开始无效）
+    X    死掉的进程
+-----------------------------------------------------------
+    <    高优先级
+    N    低优先级
+    L    有些页被锁进内存
+    s    包含子进程
+    +    位于后台的进程组；
+    l    多线程，克隆线程  multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+
+关于bind函数和accept函数的结构体大小参数的问题
+//http://www.cnblogs.com/biyeymyhjob/archive/2012/08/05/2623774.html
+/*
+服务器端在绑定和监听操作之后，调用accept函数
+如果监听的socket描述符为阻塞模式则accept一直会阻塞直到有客户发起连接请求，
+如果监听的socket描述符为非阻塞模式则如果当前没有可用的客户连接请求，则返回-1(errno设置为EAGAIN)
+*/
+2015/11/17
+#1Q: gdb 调试的常见问题
+#1A:
+gdb attch <pid>
+set follow-fork-mode parent/child(默认parent,表示gdb调试默认跟踪父进程)
+set detach-on-fork on/off(默认on,off表示父子进程同时被gdb监控)
+
+set print pretty on  //更美观的格式打印结构体
+set arg c1 //gdb调试带参数的程序
+info thread 查看当前进程的线程。
+thread <ID> 切换调试的线程为指定ID的线程。
+break file.c:100 thread all  在file.c文件第100行处为所有经过这里的线程设置断点。
+set scheduler-locking off|on|step。
+在使用step或者continue命令调试当前被调试线程的时候，其他线程也是同时执行的，怎么只让被调试程序执行呢？
+通过这个命令就可以实现这个需求。
+off 不锁定任何线程，也就是所有线程都执行，这是默认值。
+on 只有当前被调试程序会执行。
+step 在单步的时候，除了next过一个函数的情况(熟悉情况的人可能知道，这其实是一个设置断点然后continue的行为)以外，
+只有当前线程会执行。
+
+#2Q: Linux强大的strace命令，可以查看内核系统调用相关情况
+#2A: 执行例子 starce ls,可查看starce的结果。其中常用的简单参数有
+                -e read  表示对某个具体(read)的系统调用进行跟踪
+                -c       更好的展示strace的结果
+                -p pid   跟踪指定的pid进程
+
+#2Q: 阻塞、非阻塞，同步、异步的概念
+#2A: 阻塞、非阻塞：进程/线程要访问的数据是否就绪，进程/线程是否需要等待；
+     同步、异步：访问数据的方式，同步需要主动读写数据，在读写数据过程中还会阻塞。异步只需要I/O操作完成的通知，并不主动
+                 读写数据，是由操作系统内核完成数据的读写；
+     阻塞式I/O           非阻塞式I/O       I/O复用        异步I/O
+      发起                   检查           检查            发起        >
+        |                    检查            |阻塞                      |等待
+        |阻塞                检查            |                          |数据
+        |                    检查           就绪                        > 
+        |                     |             发起                        |将数据
+        |                     |阻塞          |                          |从内核
+        |                     |              |阻塞                      |复制到
+        |                     |              |                          |用户空间
+      完成                   完成            完成           通知        >
+      <------------------------------------------->    <----------->
+             第一阶段处理不同，第二阶段                  处理两个 
+             处理相同(阻塞于recvfrom调用)                 阶段
+      
+      内核将数据包缓存在文件描述符的读缓存区（接受缓存区）中，注意这里的读缓存区是在内核中的
+      当文件描述符读缓存区数据字节数大于应用程序定义的低水位的时候（read的一个参数），此时文件描述符处于读就绪的状态
+      将读缓存区中的数据复制到应用程序（用户区）返回
+      
+# Eclipse中的outline中图标的含义
+        - 实心的代表方法
+        - 空心的代表属性 
+        - 绿色的圆表示公有public
+        - 黄色的菱形表示保护protect
+        - 红色的方形表示私有private
+        - 图形后加字母S代表该属性或方法为static静态的，加字母F代表它为final的,加字母A表示抽象abstract，加c表示构造方法construction。
+
+# Thread.State
+        A thread state.A thread can be in one of the following states:
+        NEW: A thread that has not yet started is in this state;
+        RUNNABLE: A thread executing in the Java virtual machine is in this state;
+        BLOCKED: A thread that is blocked waiting for a monitor lock is in this state;
+        WAITING: A thread that is waiting indefinitely for another thread to perform a particular action is in this state;
+        TIMED_WAITING: A thread that is waiting for another thread to perform an action for up to a specified waiting 
+                       time is in this state;
+        TERMINATED: A thread that has exited is in this state
