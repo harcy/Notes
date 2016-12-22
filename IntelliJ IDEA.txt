@@ -62,4 +62,5 @@ IntelliJ IDEA 导航快捷键
 	 Ctrl+Q 查看当前方法的声明
 	 Alt+Enter <?智能提示修改代码?>
 	 Shfit+Enter 智能换行
-	 
+	 Ctrl+/        //注释
+	 Ctrl+Shfit+/ /* */多段注释	 
