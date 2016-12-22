@@ -1,0 +1,65 @@
+IntelliJ IDEA 导航快捷键
+
+查找功能：
+
+	Ctrl+W 选中代码块(if,try-catch语句块，等同双击效果)
+	
+	Ctrl+B     快速打开光标处的class或method
+	Ctrl+Alt+B 跳转到方法的实现处 <导航至子级class>
+	
+	Ctrl+Shift+U 大小写转换
+
+	Alt+ <-/->在打开的文件窗口间切换
+	Ctrl+ <-/->以单词为单位移动光标位置
+	
+	Ctrl+Alt+<-  Navigate move forward
+	Ctrl+Alt+->  Navigate move back
+	
+	Ctrl+E 最近打开的文件(支持搜索)
+	Ctrl+Shift+E 最近编辑的文件
+	
+	Ctrl+F12 当前打开文件的结构(java class文件包含Fields & Methods, xml html文件标签书tags tree)
+	Alt+F12 Terminal工具窗口
+	Ctrl+Shfit+F12 关闭此前被呼出的工具窗口(隐藏/恢复所有窗口)
+	
+	Alt+Home 跳转至导航栏
+	Ctrl+Alt+Home 视图与控制器之间的导航功能<not verify>
+	
+	Ctrl+N Go to a class搜索某个class,支持各种匹配方式
+    Double Shfit Go to search everywhere
+	Ctrl+Shfit+N 跳转到指定的文件或目录
+	Ctrl+Alt+Shfit+N Go to a symbol跳转至指定符号
+	
+	Alt+F1 在特定的工具窗口选定正在编辑的文件，快捷键打开select in...功能
+	切换至指定的工具窗口(通过快捷键打开工具窗口，再按一次工具窗口将会隐藏)，常用窗口
+		Project工具窗口:               Alt+1
+		Class all Fields&Method窗口:  Alt+7
+		Changes工具窗口:               Alt+9
+		Terminal工具窗口：              Alt+F12
+	ESC 返回编辑器(打开任何工具窗口，按下ESC就能返回编辑器，并且工具窗口任为可视状态)
+	
+	Ctrl+Shfit+T 跳转至关联的单元测试class代码，若没有提示新建一个测试的class
+	
+	Ctrl+U Super Method 导航至父级class
+	Ctrl+Alt+U 生成class的层级结构
+	
+	Ctrl+H Type Hierarchy,只针对class/interface
+	Ctrl+Shift+H 方法层级图<?>
+	Ctrl+Alt+H 方法调用层级结构(Hierarchy Callers of the method)
+    
+	总结： E, F12, N, H, U, 
+
+代码编程：
+     Alt+Insert 添加getter/setter/constructor代码等(在project(Alt+1)窗口内新建class)
+	 Ctrl+O  Overwrite重写方法
+	 Ctrl+I  Implements实现接口方法
+	 Ctrl+Alt+L 格式化代码
+	 Shfit+F6 重构代码(重命名文件/class/方法/变量)
+	 Ctrl+Shit+Alt+T 弹出重构菜单
+	 Ctrl+ +/- 展开/折叠代码
+	 Ctrl+Shfit+ +/- 展开/折叠所有代码
+	 Ctrl+Shfit+Enter 自动结束代码，行末自动添加分号/括号/引号等，if/for等会自动添加所需结构
+	 Ctrl+Q 查看当前方法的声明
+	 Alt+Enter <?智能提示修改代码?>
+	 Shfit+Enter 智能换行
+	 
