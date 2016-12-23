@@ -27,7 +27,7 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	Ctrl+Alt+Home 视图与控制器之间的导航功能<not verify>
 	
 	Ctrl+N Go to a class搜索某个class,支持各种匹配方式
-    Double Shfit Go to search everywhere
+        Double Shfit Go to search everywhere
 	Ctrl+Shfit+N 跳转到指定的文件或目录
 	Ctrl+Alt+Shfit+N Go to a symbol跳转至指定符号
 	
@@ -51,7 +51,7 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	总结： E, F12, N, H, U, 
 
 代码编程：
-     Alt+Insert 添加getter/setter/constructor代码等(在project(Alt+1)窗口内新建class)
+         Alt+Insert 添加getter/setter/constructor代码等(在project(Alt+1)窗口内新建class)
 	 Ctrl+O  Overwrite重写方法
 	 Ctrl+I  Implements实现接口方法
 	 Ctrl+Alt+L 格式化代码
