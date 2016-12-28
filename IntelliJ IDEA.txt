@@ -64,4 +64,6 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	 Alt+Enter <?智能提示修改代码?>
 	 Shfit+Enter 智能换行
 	 Ctrl+/        //注释
-	 Ctrl+Shfit+/ /* */多段注释	 
+	 Ctrl+Shfit+/ /* */多段注释
+	 设置代码提示大小写不敏感:	
+         File--Settings--Editor--Code Completion--Case sensitive completion:None
