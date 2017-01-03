@@ -1,3 +1,17 @@
+    import static com.sap.controller.className.*;
+/* why use static to import, the mean of 'static' here:
+* Static import is a feature introduced in the Java programming language that allows members (fields and methods)
+* defined in a class as public static to be used in Java code without specifying the class in which the
+* field is defined. This feature was introduced into the language in version 5.0.
+* The feature provides a type safe mechanism to include constants into code without having to reference
+* the class that originally defined the field. It also helps to deprecate the practice of
+* creating a constant interface:an interface that only defines constants then writing a class
+* implementing that interface,which is considered an inappropriate use of interfaces.
+* When you import with static keyword it means you just inserted it somehow in your class and
+* you can use it's methods the same way you're calling your own classes' methods
+* */
+
+
 tail -f filename //监视filename文件的尾部内容（默认10行，相当于增加参数 -n 10），刷新显示在屏幕上
 
 2015/10/15
