@@ -19,5 +19,6 @@ git push: 用于将本地分支的更新推送到远程主机
 	 
 	 $git config --global user.name "Your Real Name"
          $git config --global user.email you@email.address
+	 $git config --list //读取环境各个配置属性的值
 	 
 	 ssh-keygen -C 'your@email.address' -t rsa
