@@ -16,3 +16,8 @@ git push: 用于将本地分支的更新推送到远程主机
 	    首次推送添加远程代码库的配置
 	 
 	 $git checkout -- file  丢弃本地的某个文件的修改，一定需要添加 -- 符号
+	 
+	 $git config --global user.name "Your Real Name"
+         $git config --global user.email you@email.address
+	 
+	 ssh-keygen -C 'your@email.address' -t rsa
