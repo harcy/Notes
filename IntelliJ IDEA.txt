@@ -9,7 +9,8 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	Ctrl+Alt+B 跳转到方法的实现处 <导航至子级class>
 	
 	Ctrl+Shift+U 大小写转换
-
+	Ctrl+Shift+F 全文查找
+	
 	Alt+ <-/->在打开的文件窗口间切换
 	Ctrl+ <-/->以单词为单位移动光标位置
 	
