@@ -14,7 +14,7 @@ public LinkedList(){
 
 public LinkedList(Collection<? extends E> c){
     this();
-    addAll(c); // ---下文分析
+    addAll(c); //
 }
 ```
 
@@ -56,7 +56,7 @@ public void add(int index, E element){
     if(index == size)
       linkLast(element);
     else
-      //node(index)方法找到具体的节点,在这个节点之前进行插入操作，主要考虑边界情况，比如prev节点为奴
+      //node(index)方法找到具体的节点,在这个节点之前进行插入操作，主要考虑边界情况，比如prev节点为null
       linkBefore(element, node(index));
 }
 
