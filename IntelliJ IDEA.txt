@@ -17,6 +17,9 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	Ctrl+Alt+<-  Navigate move forward
 	Ctrl+Alt+->  Navigate move back
 	
+	Ctrl+Home 跳转文件顶部
+	Ctrl+End 跳转文件底部
+	
 	Ctrl+E 最近打开的文件(支持搜索)
 	Ctrl+Shift+E 最近编辑的文件
 	
