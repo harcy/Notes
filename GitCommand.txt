@@ -22,3 +22,8 @@ git push: 用于将本地分支的更新推送到远程主机
 	 $git config --list //读取环境各个配置属性的值
 	 
 	 ssh-keygen -C 'your@email.address' -t rsa
+	 
+	 (正在feature分支上开发，需要去处理另一个无关的bug，先运行git stash,然后checkout master, 新建branch处理解决bug，
+	 最后checkout到feature分支，运行git stash apply，恢复所有的change继续开发)
+	 git stash
+	 git stash apply
