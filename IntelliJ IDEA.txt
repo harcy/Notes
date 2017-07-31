@@ -28,6 +28,10 @@ IntelliJ IDEA 导航快捷键(Windows环境)
 	Alt+F12 Terminal工具窗口
 	Ctrl+Shfit+F12 关闭此前被呼出的工具窗口(隐藏/恢复所有窗口)
 	
+	F2 / Shift+F12  跳转到下一个/上一个错误
+	Ctrl+Y 删除光标所在代码行
+	Ctrl+Shift+Up/Down 上移/下移代码行
+	
 	Alt+Home 跳转至导航栏
 	Ctrl+Alt+Home 视图与控制器之间的导航功能<not verify>
 	
