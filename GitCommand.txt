@@ -27,3 +27,5 @@ git push: 用于将本地分支的更新推送到远程主机
 	 最后checkout到feature分支，运行git stash apply，恢复所有的change继续开发)
 	 git stash
 	 git stash apply
+	 
+	  git log --pretty=oneline --abbrev-commit //打印整洁的commit log
