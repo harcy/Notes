@@ -84,3 +84,9 @@ chrome tab快捷键：
         Ctrl+tab 切换tab页面
 	Ctrl+Num 切换到指定数字的tab,Ctrl+9切换到最后一个tab
 	Ctrl+W/F4 关闭当前tab
+
+Intellij连续试用方法：
+  1. 删除注册表里的试用信息: reg delete HKEY_CURRENT_USER\Software\JavaSoft\Prefs\jetbrains
+  2. 删除目录下的试用信息: USER/.IntellijIdea2017.2/config/eval 文件夹
+  3. 删除options.xml里的使用信息： USER/.IntellijIdea2017.2/config/options/options.xml, 删除xml文件里的包含
+     evalsptr*的所有行
