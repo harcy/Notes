@@ -29,3 +29,5 @@ git push: 用于将本地分支的更新推送到远程主机
 	 git stash apply
 	 
 	  git log --pretty=oneline --abbrev-commit //打印整洁的commit log
+
+          git branch -m new-branch //修改现有branch的分支名
