@@ -33,3 +33,5 @@ git push: 用于将本地分支的更新推送到远程主机
           git branch -m new-branch //修改现有branch的分支名
  
           git show commit-id //查看本次commitid修改的代码
+	  
+	  git diff --stat //不加参数比较文件内容的不同，--stat参数只显示有修改的文件列表
