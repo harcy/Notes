@@ -37,3 +37,7 @@ git push: 用于将本地分支的更新推送到远程主机
 	  git diff --stat //不加参数比较文件内容的不同，--stat参数只显示有修改的文件列表
 	  
 	  git cherry-pick commit-id //将其他分支的某个commit加到本分支上来
+	  
+	  git branch -b branchName origin/branchName //从远程分支拉取到本地并在本地创建该分支，建立起跟远端映射关系
+远程
+
